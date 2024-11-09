@@ -17,7 +17,7 @@ const winMoves = [
   [2, 4, 6],
 ];
 
-let mode = "bot";
+let modeFriend = true;
 let currentPlayerX = true;
 let playerCharacter = "X";
 let botCharachter = "O";
@@ -28,9 +28,14 @@ $("#new-game").click(() => {
   newGame();
 });
 
+$("#change-mode").click(() => {
+  modeFriend = !modeFriend;
+  $("#mode").text(modeFriend ? "Friend" : "Bot");
+});
+
 const finishGame = (winner) => {
   gameFinished = true;
-  $("#result").text(winner + " WON");
+  $("#result").text("Player " + winner + " Won");
 };
 
 const checkGame = () => {
@@ -53,14 +58,13 @@ const checkWin = () => {
 
 const cellClick = function (cell) {
   if (!cell.text() && !gameFinished) {
-    if (mode == "friend") {
+    if (modeFriend) {
       currentPlayerX ? (playerCharacter = "X") : (playerCharacter = "O");
       cell.text(playerCharacter);
       moves[parseInt(cell.attr("id"))] = playerCharacter;
       currentPlayerX = !currentPlayerX;
       checkWin();
-    }
-    if (mode == "bot") {
+    } else {
       cell.text(playerCharacter);
       moves[parseInt(cell.attr("id"))] = playerCharacter;
       checkWin();

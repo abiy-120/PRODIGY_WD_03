@@ -29,7 +29,13 @@ body {
 }
 
 #result {
-  font-size: 50px;
+  margin-top: 0;
+  font-size: 30px;
+  color: #c70039;
+}
+
+#controls {
+  text-align: center;
 }
 
 #controls button {
